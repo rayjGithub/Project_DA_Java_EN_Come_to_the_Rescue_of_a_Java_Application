@@ -23,8 +23,8 @@ public class AnalyticsCounter implements ISymptomCounter {
         Map<String, Integer> result = new HashMap<String, Integer>();
         int counter = 0;
         for (String symptom : listOfSymptoms) {
-            for (int i = 0; i < listOfSymptoms.size(); i++) {
-                if (symptom.equals(listOfSymptoms.get(i))) {
+            for (String listOfSymptom : listOfSymptoms) {
+                if (symptom.equals(listOfSymptom)) {
                     counter++;
                 }
             }
@@ -34,6 +34,7 @@ public class AnalyticsCounter implements ISymptomCounter {
             counter = 0;
         }
         return result;
+
     }
 
 }
