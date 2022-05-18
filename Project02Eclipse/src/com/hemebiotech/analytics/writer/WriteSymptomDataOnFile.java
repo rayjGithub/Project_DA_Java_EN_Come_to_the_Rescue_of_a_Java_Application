@@ -14,14 +14,15 @@ import java.util.Map;
  */
 public class WriteSymptomDataOnFile implements ISymptomWriter {
 
-    private Map<String, Integer> symptomMap;
+    /*private Map<String, Integer> symptomMap;*/
+    private Map<String, Long> symptomMap;
     private String filepath;
 
     /**
      * @param symptomMap a map of every symptom with their count from the source with no duplicate
      * @param filepath   a full or partial path to file with symptom strings in it, one per line
      */
-    public WriteSymptomDataOnFile(Map<String, Integer> symptomMap, String filepath) {
+    public WriteSymptomDataOnFile(Map/*<String, Integer>*/<String, Long> symptomMap, String filepath) {
         this.symptomMap = symptomMap;
         this.filepath = filepath;
     }
@@ -29,13 +30,13 @@ public class WriteSymptomDataOnFile implements ISymptomWriter {
     @Override
     public void writeSymptoms() {
 
-        Map<String, Integer> orderedSymptomsCount = orderSymptomsCount();
+//        Map<String, Integer> orderedSymptomsCount = orderSymptomsCount();
 
         if (filepath != null) {
             try {
                 BufferedWriter writer = new BufferedWriter(new FileWriter(filepath, false));
 
-                orderedSymptomsCount.forEach((symptom, count) -> {
+                /*orderedSymptomsCount*/symptomMap.forEach((symptom, count) -> {
                     try {
                         writer.write(symptom + "=" + count);
                         writer.newLine();
@@ -53,7 +54,7 @@ public class WriteSymptomDataOnFile implements ISymptomWriter {
     /**
      * @return an ordered alphbetic map of symtoms with their count, no duplicates are possible/probable
      */
-    private Map<String, Integer> orderSymptomsCount() {
+    /*private Map<String, Integer> orderSymptomsCount() {
 
         List<String> orderkeys = new ArrayList<String>();
 
@@ -67,6 +68,6 @@ public class WriteSymptomDataOnFile implements ISymptomWriter {
 
         return orderedSymptomsCount;
 
-    }
+    }*/
 
 }

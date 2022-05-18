@@ -19,7 +19,7 @@ public class Main {
 
         // Count symptoms from List
         AnalyticsCounter analyticsCounter = new AnalyticsCounter(listOfSymptoms);
-        Map<String, Integer> symptomCounter = analyticsCounter.symptomCounter();
+        Map<String, Long>/*List<String>*/ symptomCounter = analyticsCounter.symptomCounter();
 
         // write symptom's count on file
         WriteSymptomDataOnFile symptomsCountFile = new WriteSymptomDataOnFile(symptomCounter, "result.out");

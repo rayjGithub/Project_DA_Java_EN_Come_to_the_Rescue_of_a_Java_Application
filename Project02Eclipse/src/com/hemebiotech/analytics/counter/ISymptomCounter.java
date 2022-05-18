@@ -1,5 +1,6 @@
 package com.hemebiotech.analytics.counter;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -15,6 +16,6 @@ public interface ISymptomCounter {
      *
      * @return a raw mapping of all symptoms with their instance's number from the data source, without any duplicates
      */
-    Map<String, Integer> symptomCounter();
+    Map<String, Long>/*List<String>*/ symptomCounter();
 
 }
