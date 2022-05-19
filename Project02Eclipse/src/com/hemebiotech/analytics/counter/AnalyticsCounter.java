@@ -27,7 +27,6 @@ public class AnalyticsCounter implements ISymptomCounter {
         // IMPERATIVE APPROACH
 
         /*Map<String, Integer> result = new HashMap<>();*/
-        Map<String, Long> result = new LinkedHashMap<>();
         /*int counter = 0;
         for (String symptom : listOfSymptoms) {
             for (String listOfSymptom : listOfSymptoms) {
@@ -43,9 +42,9 @@ public class AnalyticsCounter implements ISymptomCounter {
 
         // DECLARATIVE APPROACH
 
-        List<String> orderedListOfSymptoms = listOfSymptoms.stream().sorted().collect(Collectors.toList());
-        Map<String, Long> symptomCountMap = orderedListOfSymptoms.stream()
-                .collect(Collectors.groupingBy(/*symptom -> symptom*/Function.identity(), Collectors.counting()));
+        Map<String, Long> result = new LinkedHashMap<>();
+        Map<String, Long> symptomCountMap = listOfSymptoms.stream()
+                .collect(Collectors.groupingBy(/*symptom -> symptom ==*/Function.identity(), Collectors.counting()));
         return result = symptomCountMap.entrySet().stream()
                 .sorted(Map.Entry.comparingByKey())
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (oldValue, newValue) -> oldValue, LinkedHashMap::new));
